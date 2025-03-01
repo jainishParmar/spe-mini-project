@@ -39,7 +39,11 @@ pipeline{
         stage('deployment') {
             steps {
                 script {
-                    echo "hello world"
+                      withCredentials([usernamePassword(credentialsId:"dockerhubcred",passwordVariable:"dockerpass",usernameVariable:"dockerhubuser")])
+                    {
+                        sh "sudo docker pull ${env.dockerhubuser}/spe-calc-mini-project:latest"
+                        sh "docker run -it spe-calc-mini-project:latest"
+                    }
                 }
             }
         }
