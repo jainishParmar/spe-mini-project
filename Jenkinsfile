@@ -21,6 +21,16 @@ pipeline{
                 }
             }
         }
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    sh 'sudo docker login -u jainishparmar -p Falcon_30$0401'
+                    sh 'sudo docker tag spe-calc-mini-project jainishparmar/spe-calc-mini-project:latest'
+                    sh 'sudo docker push jainishparmar/spe-calc-mini-project:latest'
+                
+                 }
+            }
+        }
         stage('deployment') {
             steps {
                 script {
