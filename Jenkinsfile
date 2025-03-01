@@ -17,7 +17,7 @@ pipeline{
         stage('test mvn'){
             steps{
                 script{
-                    sh 'sudo apt install maven'
+                 
                     sh 'sudo mvn clean package'
                 }
             }
