@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'slave'}
+    agent any
       environment {
         
         GITHUB_REPO_URL = 'https://github.com/jainishParmar/spe-mini-project.git'
