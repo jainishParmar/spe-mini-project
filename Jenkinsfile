@@ -17,7 +17,6 @@ pipeline{
         stage('test mvn'){
             steps{
                 script{
-                 
                     sh 'sudo mvn clean package'
                 }
             }
@@ -50,7 +49,7 @@ pipeline{
                       withCredentials([usernamePassword(credentialsId:"dockerhubcred",passwordVariable:"dockerpass",usernameVariable:"dockerhubuser")])
                     {
                         sh "sudo docker pull ${env.dockerhubuser}/spe-calc-mini-project:latest"
-                        sh "sudo docker run -it spe-calc-mini-project:latest java -jar app.jar"
+                        sh "sudo docker run -i spe-calc-mini-project:latest java -jar app.jar"
                     }
                 }
             }
