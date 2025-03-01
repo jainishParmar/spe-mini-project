@@ -17,7 +17,7 @@ pipeline{
         stage('testing and building image') {
             steps {
                 script {
-                    sh 'docker build -t spe-calc-mini-project:latest .'
+                    sh 'sudo docker build -t spe-calc-mini-project:latest .'
                 }
             }
         }
