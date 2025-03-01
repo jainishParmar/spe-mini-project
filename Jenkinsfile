@@ -49,7 +49,7 @@ pipeline{
                       withCredentials([usernamePassword(credentialsId:"dockerhubcred",passwordVariable:"dockerpass",usernameVariable:"dockerhubuser")])
                     {
                         sh "sudo docker pull ${env.dockerhubuser}/spe-calc-mini-project:latest"
-                        sh "sudo docker run -i spe-calc-mini-project:latest java -jar app.jar"
+                        sh "sudo docker run -i -d spe-calc-mini-project:latest java -jar app.jar"
                     }
                 }
             }
