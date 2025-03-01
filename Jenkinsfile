@@ -24,10 +24,10 @@ pipeline{
         stage('Push Docker Images') {
             steps {
                 script{
-                    withCredentials([usernamePassword(credentialsId:'dockerhubcred',passwordVariable:'dockerhubpass',usernameVariable:'dockerhubuser')])
+                    withCredentials([usernamePassword(credentialsId:"dockerhubcred",passwordVariable:"dockerpass",usernameVariable:"dockerhubuser")])
                     {
 
-                        sh 'sudo docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}'
+                        sh "sudo docker login -u ${env.dockerhubuser} -p ${env.dockerpass} "
                         echo 'login successful'
                         sh 'sudo docker tag spe-calc-mini-project ${env.dockerhubuser}/spe-calc-mini-project:latest'
                         sh 'sudo docker push ${env.dockerhubuser}/spe-calc-mini-project:latest'
