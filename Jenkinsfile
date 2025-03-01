@@ -46,10 +46,11 @@ pipeline{
         stage('deployment') {
             steps {
                 script {
-                      withCredentials([usernamePassword(credentialsId:"dockerhubcred",passwordVariable:"dockerpass",usernameVariable:"dockerhubuser")])
+                    withEnv(["ANSIBLE_HOST_KEY_CHECKING=False"]) 
                     {
-                        sh "sudo docker pull ${env.dockerhubuser}/spe-calc-mini-project:latest"
-                        sh "sudo docker run -i -d spe-calc-mini-project:latest java -jar app.jar"
+                        ansiblePlaybook(
+                            playbook: 'deploy_playbook.yml'
+                        )
                     }
                 }
             }
