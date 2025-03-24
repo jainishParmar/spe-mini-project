@@ -1,0 +1,29 @@
+---
+- name: Pull Docker Image from Docker Hub
+  hosts: localhost
+  remote_user: jainish-parmar
+  become: false
+  tasks:
+    - name: Pull Docker Image
+      docker_image:
+        name: "jainishparmar/spe-calc-mini-project"
+        source: pull
+      register: docker_pull_result
+
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Stop and removing existing container if it is running #Add this because if same name container is running
+      shell: |
+        docker stop spe-calc-mini-project || true
+        docker rm spe-calc-mini-project || true
+      ignore_errors: yes
+
+    - name: Running container
+      shell: docker run -i -d --name spe-calc-mini-project jainishparmar/spe-calc-mini-project:latest

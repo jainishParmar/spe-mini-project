@@ -25,7 +25,7 @@ pipeline{
             steps {
                 script {
                     sh ' docker build -t spe-calc-mini-project:latest .'
-                    echo 'image build successfully'
+                    
                 }
             }
         }
@@ -51,6 +51,7 @@ pipeline{
                     {
                         ansiblePlaybook(
                             playbook: 'deploy_playbook.yml'
+                            inventory: 'inventory.ini'
                         )
                     }
                 }
