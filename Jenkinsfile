@@ -1,11 +1,8 @@
 pipeline{
     agent any
       environment {
-        
         GITHUB_REPO_URL = 'https://github.com/jainishParmar/spe-mini-project.git'
-
     }
-
      stages {
         stage('Checkout') {
             steps {
