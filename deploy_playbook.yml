@@ -26,4 +26,4 @@
       ignore_errors: yes
 
     - name: Running container
-      shell: docker run -i -d --name spe-calc-mini-project jainishparmar/spe-calc-mini-project:latest
+      shell: docker run -it  --name spe-calc-mini-project jainishparmar/spe-calc-mini-project:latest java -jar app.jar
