@@ -22,6 +22,7 @@ pipeline{
             steps {
                 script {
                     sh ' docker build -t spe-calc-mini-project:latest .'
+                    echo 'build successfully'
                     
                 }
             }
